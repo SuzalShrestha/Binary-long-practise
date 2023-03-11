@@ -1,9 +1,46 @@
 // Convert the integers in the console.logs below to base 16:
 
 /******************************************************************************/
-
+const convertToBase10 = (str) => {
+  // Your code here
+  //convert binary to decimal
+  if (str[0] === "0" && str[1] === "b") {
+    let binary = str.slice(2);
+    let decimal = 0;
+    for (let i = 0; i < binary.length; i++) {
+      decimal += Math.pow(2, binary.length - i - 1) * binary[i];
+    }
+    return decimal;
+  }
+};
 const convertToBase16 = element => {
   // Your code here
+  if(typeof element === 'string') {
+    let decimal=convertToBase10(element);
+    return convertToBase16(decimal);
+  }
+  if(typeof element === 'number') {
+    let hex=[];
+    let myHex = {
+      10:"a",
+      11:"b",
+      12:"c",
+      13:"d",
+      14:"e",
+      15:"f",
+    };
+    while (element > 0) {
+      if(myHex[element %16]){
+        hex.unshift(myHex[element % 16]);
+      }else{
+        
+        hex.unshift(element % 16);
+      }
+      element = Math.floor(element / 16);
+    }
+    return `0x${hex.join('')}`;
+  
+  }
 };
 
 /******************************************************************************/
