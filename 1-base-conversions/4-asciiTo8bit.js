@@ -1,4 +1,4 @@
-const addZeros = require('../utils/addZeros');
+const addZeros = require("../utils/addZeros");
 
 // Translate the ASCII strings in the console.logs below to 8-bit binary strings
 // Implement the imported helper function addZeros()
@@ -6,7 +6,6 @@ const addZeros = require('../utils/addZeros');
 
 /******************************************************************************/
 const convertToBase10 = (str) => {
-  // Your code here
   //convert hexadecimal to decimal
   if (str[0] === "0" && str[1] === "x") {
     let obj = {
@@ -41,43 +40,39 @@ const convertToBase10 = (str) => {
 };
 /******************************************************************************/
 
-const convertToBase2 = element => {
-  // Your code here
-  if(typeof element === 'string'){
-    let decimal =convertToBase10(element);
+const convertToBase2 = (element) => {
+  if (typeof element === "string") {
+    let decimal = convertToBase10(element);
     return convertToBase2(decimal);
   }
-  if (typeof element === 'number') {
-    let binary=[];
+  if (typeof element === "number") {
+    let binary = [];
     while (element > 0) {
       binary.unshift(element % 2);
       element = Math.floor(element / 2);
     }
-    return binary.join('');
+    return binary.join("");
   }
-  
-
 };
-const asciiTo8bit = str => {
-  // Your code here
-  let result=[];
- for(let i=0;i<str.length;i++){
-  let char=str.charCodeAt(str.indexOf(str[i]));
-  let binaryOfChar=convertToBase2(char);
-  binaryOfChar=addZeros(binaryOfChar,8);
+const asciiTo8bit = (str) => {
+  let result = [];
+  for (let i = 0; i < str.length; i++) {
+    let char = str.charCodeAt(str.indexOf(str[i]));
+    let binaryOfChar = convertToBase2(char);
+    binaryOfChar = addZeros(binaryOfChar, 8);
 
-  result.push(binaryOfChar);
-}
-return result.join('');
+    result.push(binaryOfChar);
+  }
+  return result.join("");
 };
 
 /******************************************************************************/
 
-console.log(asciiTo8bit('123'));
+console.log(asciiTo8bit("123"));
 // 001100010011001000110011
 
-console.log(asciiTo8bit('ABC'));
+console.log(asciiTo8bit("ABC"));
 // 010000010100001001000011
 
-console.log(asciiTo8bit('Hello, world!'));
+console.log(asciiTo8bit("Hello, world!"));
 // 01001000011001010110110001101100011011110010110000100000011101110110111101110010011011000110010000100001

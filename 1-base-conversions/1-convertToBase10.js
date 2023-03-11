@@ -3,7 +3,6 @@
 /******************************************************************************/
 
 const convertToBase10 = (str) => {
-  // Your code here
   //convert hexadecimal to decimal
   if (str[0] === "0" && str[1] === "x") {
     let obj = {
